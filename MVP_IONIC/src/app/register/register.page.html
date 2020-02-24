@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Register
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <ion-item>
+            <ion-input name="name" type="text" placeholder="User Name" [(ngModel)]="name" required></ion-input>
+          </ion-item>
+<!--           <ion-item>
+            <ion-input name="firstName" type="text" placeholder="First Name" [(ngModel)]="firstName" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="lastName" type="text" placeholder="Last Name" [(ngModel)]="lastName" required></ion-input>
+          </ion-item> -->
+          <ion-item>
+            <ion-input name="email" type="email" placeholder="Email" [(ngModel)]="email" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="password" type="password" placeholder="Password" [(ngModel)]="password" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="confirm" type="password" placeholder="Confirm Password" [(ngModel)]="confirm" required></ion-input>
+            <p *ngIf="!passwordCheck()" style="color:red">Password is different!</p>
+          </ion-item>
+          <ion-button size="large" expand="block" (click)="register()">Register</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

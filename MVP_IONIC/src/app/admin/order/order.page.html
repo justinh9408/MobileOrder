@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+	<ion-item color="primary" *ngFor="let item of items">
+	    <ion-label>{{item.name}}</ion-label>
+		<ion-label>{{item.description}}</ion-label>
+	</ion-item>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-card *ngFor="let category of categories">
+    <ion-card-header>
+      <ion-item *ngIf="category.editMode == false">
+        <ion-label slot="start">
+          {{category.name}}
+          <br/>
+          {{category.description}}
+        </ion-label>
+        <ion-icon slot="end" name="create" (click)="categoryEdit(category)"></ion-icon>
+        <ion-icon slot="end" name="remove-circle" (click)="categoryDeleteAlert(category.id)"></ion-icon>
+        <ion-icon slot="end" name="arrow-dropdown" (click)="collapse(category)"></ion-icon>
+      </ion-item>
+      <div *ngIf="category.editMode">
+        <ion-item>
+            <ion-input name="name" type="text" placeholder="Name" [(ngModel)]="category.name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input name="description" type="text" placeholder="Description" [(ngModel)]="category.description"></ion-input>
+        </ion-item>
+        <ion-button size="large" (click)="updateCategory(category)">Save</ion-button>
+      </div>
+    </ion-card-header>
+    <ion-card-content [hidden]="category.isHide">
+      <ion-item-sliding *ngFor="let item of category.items">
+        <ion-item-options side="end">
+          <ion-item-option (click)="menuItemAddEdit(item.catID, item.id)">Edit</ion-item-option>
+          <ion-item-option color="danger" (click)="itemDeleteAlert(item.id, category)">Delete</ion-item-option>
+        </ion-item-options>
+        <ion-item (click)="menuItemAddEdit(item.catID, item.id)">
+          <ion-thumbnail slot="start">
+            <img src="{{menuService.hostName}}{{item.imagePath}}">
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{item.name}}</h2>
+            <p>{{item.description}}</p>
+          </ion-label>
+          <ion-chip slot="end">
+            <ion-label>$ {{item.price | number:'1.2-2'}}</ion-label>
+          </ion-chip>
+        </ion-item>
+      </ion-item-sliding>
+      <ion-button size="large" expand="block" (click)="menuItemAddEdit(category.id, -1)">Add a Item</ion-button>         
+    </ion-card-content>
+  </ion-card>
+  <ion-item></ion-item>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="light">
+      <ion-icon name="add" (click)="addCategoryPopup()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

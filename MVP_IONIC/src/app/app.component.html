@@ -1,0 +1,21 @@
+<ion-app>
+  <ion-menu side="start" menuId="menu" contentId="content">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Start Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item><a href="/log-in">Log In</a></ion-item>
+        <ion-item><a href="/register">Register</a></ion-item>
+        <ion-item><a href="/tabs">Tabs</a></ion-item>
+        <ion-item (click)="logout()">Log out</ion-item>
+        <ion-item>Menu Item</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="content"></ion-router-outlet>
+  
+</ion-app>

@@ -1,0 +1,21 @@
+<ion-list *ngIf="category && category.items">
+  <ion-item *ngFor="let item of category.items">
+    <ion-thumbnail slot="start">
+      <img src="{{menuService.hostName}}{{item.imagePath}}">
+    </ion-thumbnail>
+    <ion-label (click)="orderItem(item)">
+      <h2>{{item.name}}</h2>
+      <p>{{item.description}}</p>
+    </ion-label>
+    <ion-chip slot="end">
+      <ion-label>$ {{item.price | number:'1.2-2'}}</ion-label>
+    </ion-chip>
+  </ion-item>
+</ion-list>
+<ion-list>
+  Items ordered:
+  <ion-item *ngFor="let orderItm of orderItems">
+    - {{orderItm.name}}
+  </ion-item>
+  <ion-button *ngIf="orderItems.length != 0" (click)="submitOrder()">Order</ion-button>
+</ion-list>
