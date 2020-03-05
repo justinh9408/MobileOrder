@@ -37,7 +37,7 @@ CREATE TABLE menuItems (
     isDeleted int NOT NULL default 0
 );
 
-alter TABLE users ALTER column description varchar(255) null;
+alter TABLE users MODIFY description varchar(255) null;
 
 alter TABLE menuItems add price float not null default 0;
 
