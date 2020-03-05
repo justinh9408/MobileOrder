@@ -1,83 +1,69 @@
 CREATE DATABASE rst;
 
+use rst;
+
 CREATE TABLE users (
-    id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(255) NOT NULL,
     email varchar(255) NOT NULL,
     password varchar(255) NOT NULL
 );
 
-alter TABLE users add firstName varchar(255) NULL, lastName varchar(255) NULL
+alter TABLE users add firstName varchar(255) NULL, add lastName varchar(255) NULL;
 
-alter TABLE users add description varchar(4000) null
+alter TABLE users add description varchar(4000) null;
 
 CREATE TABLE restaurants (
-    id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(255) NOT NULL,
     email varchar(255) NOT NULL,
     password varchar(255) NOT NULL
 );
 
 CREATE TABLE menuCategories (
-    id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     rstID int NOT NULL,
     name varchar(255) NOT NULL,
     description varchar(255) null,
-    isDeleted int NOT NULL default(0)
+    isDeleted int NOT NULL default 0
 );
 
 CREATE TABLE menuItems (
-    id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     catID int NOT NULL,
     name varchar(255) NOT NULL,
     description varchar(255) null,
     imagePath varchar(255) null,
-    isDeleted int NOT NULL default(0)
+    isDeleted int NOT NULL default 0
 );
 
-alter TABLE users ALTER column description varchar(255) null
+alter TABLE users ALTER column description varchar(255) null;
 
-
-var http = require('http').Server(app);
-var io = require('socket.io').listen(server);
-io.on('connection', (socket) => {
- console.log('user connected');
-  
- socket.on('disconnect', function(){
-  console.log('user disconnected');
- });
-
- socket.on('add-message', (message) => {
-  console.log("add-message" + message)
-  io.emit('message', {type:'new-message', text: message});  
- });
-});
-
-alter TABLE menuItems add price float not null default(0)
+alter TABLE menuItems add price float not null default 0;
 
 CREATE TABLE orders (
-    id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     rstID int NOT NULL,
-    statusID int NOT NULL default(1)
+    statusID int NOT NULL default 1
 );
 
 CREATE TABLE orderStatus (
-    id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     statusName varchar(255) NOT NULL
 );
 
-insert into orderStatus(statusName) values ('sent')
-insert into orderStatus(statusName) values ('done')
-insert into orderStatus(statusName) values ('cancelled')
+insert into orderStatus(statusName) values ('sent');
+insert into orderStatus(statusName) values ('done');
+insert into orderStatus(statusName) values ('cancelled');
 
 CREATE TABLE orderItems (
-    id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     orderID int NOT NULL,
     menuItemID int NOT NULL,
     amount int NOT NULL,
-    isDeleted int NOT NULL default(0)
+    isDeleted int NOT NULL default 0
 );
 
-alter TABLE restaurants add description varchar(4000) null
+alter TABLE restaurants add description varchar(4000) null;
 
-alter TABLE restaurants add imagePath varchar(255) null
+alter TABLE restaurants add imagePath varchar(255) null;
