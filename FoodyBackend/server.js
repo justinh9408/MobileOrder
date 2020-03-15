@@ -9,24 +9,7 @@ const app = express();
 var port = process.env.PORT || 3000;
 var  bodyParser = require('body-parser');
 
-var tediousExpress = require('express4-tedious');
-
-var connection =
-{
-    authentication: {
-        options: {
-            userName: 'yellowfish', // update me
-            password: 'Haojie......' // update me
-        },
-        type: 'default'
-    },
-    server: 'littleyellowfish.database.windows.net', // update me
-    options:
-    {
-        database: 'littleYellowFish', //update me
-        encrypt: true
-    }
-};
+const sql = require("./db/db.js");
 
 exports.UPLOAD_PATH = 'uploads';
 
@@ -60,9 +43,17 @@ app.use(function (req, res, next) {
 });
 
 app.use(function (req, res, next) {
-  req.sql = tediousExpress(connection);
+  req.sql = sql;
   next();
 });
+
+exports.responseFunction = function(res, err, data) {
+    if (err) {
+        res.json(err);
+    } else {
+        res.json(data);
+    }
+}
 
 
 var api_config = require('./api/index.js');

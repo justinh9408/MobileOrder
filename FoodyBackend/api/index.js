@@ -1,7 +1,5 @@
 'use strict';
 module.exports = function(app) {
-    var memberRoute = require('./routes/memberRoute');
-    memberRoute(app);
 
     var userRoute = require('./routes/userRoute');
     userRoute(app);
