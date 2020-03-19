@@ -101,11 +101,13 @@ export class MenuItemPage implements OnInit {
   }
 
   uploadFile(name, id) {
-    const formData = new FormData();
-    formData.append(name, this.image); 
-    this.menuService.uploadFile(formData, id).subscribe(result => {
-      console.log(result);
-    });
+    if (this.image) {
+      const formData = new FormData();
+      formData.append(name, this.image); 
+      this.menuService.uploadFile(formData, id).subscribe(result => {
+        console.log(result);
+      });
+    }
   }
 
 

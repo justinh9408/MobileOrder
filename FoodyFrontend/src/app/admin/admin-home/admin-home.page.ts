@@ -35,15 +35,17 @@ export class AdminHomePage implements OnInit {
 	}
 
 	upload(event) {
-	this.image = event.target.files[0];
+		this.image = event.target.files[0];
 	}
 
 	uploadFile(name, id) {
-	const formData = new FormData();
-	formData.append(name, this.image);
-	this.restaurantService.uploadFile(formData, id).subscribe(result => {
-		console.log(result);
-	});
+		if (this.image) {
+			const formData = new FormData();
+			formData.append(name, this.image);
+			this.restaurantService.uploadFile(formData, id).subscribe(result => {
+				console.log(result);
+			});
+		}
 	}
 
 	save() {
