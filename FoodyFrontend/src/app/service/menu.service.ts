@@ -26,7 +26,28 @@ export class MenuService {
     this.headers.set('Access-Control-Allow-Headers', 'Content-Type');
     this.options = { headers: this.headers,  withCredentials: true};
   }
-  c
+
+  // customer submit order to rst
+  submitOrder(data){
+
+    this.socket.emit('submitOrder', data);  
+  }
+
+  // rst owner recieve real-time order
+  receiveOrder(rstId) {
+    let observable = new Observable(observer => {
+      this.socket = io(this.url);
+      let orderEvent = 'receiveOrder-' + rstId;
+      this.socket.on(orderEvent, (data) => {
+        observer.next(data);  
+      });
+      return () => {
+        this.socket.disconnect();
+      }; 
+    })   
+    return observable;
+  } 
+
   sendMessage(data){
     this.socket.emit('add-message', data);  
   }

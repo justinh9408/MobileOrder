@@ -9,7 +9,6 @@ import { Router,ActivatedRoute } from '@angular/router';
 })
 export class RstMenuPage implements OnInit {
 
-  rstId: number;
   restaurant = {
     id: -1,
     name: '',
@@ -21,7 +20,8 @@ export class RstMenuPage implements OnInit {
   categories = null;
 
   @Output() categoryInShow: any;
-
+  @Output() rstId: number;
+  
   constructor(public menuService: MenuService, public rstService: RestaurantService,
               private router: Router, private route: ActivatedRoute) {
     this.route.paramMap.subscribe(params => {
