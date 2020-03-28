@@ -1,0 +1,3 @@
+use rst;
+
+alter TABLE orders add userID int NOT NULL;
