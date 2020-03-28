@@ -9,6 +9,7 @@ import { MenuService } from '../service/menu.service';
 export class MenuItemComponent implements OnInit {
 
   @Input() category: any;
+  @Input() rstId: any;
 
   orderItems = []
 
@@ -21,8 +22,9 @@ export class MenuItemComponent implements OnInit {
   }
 
   submitOrder(){
-  	const data = {items: this.orderItems, type: 'order'};
-    this.menuService.sendMessage(data);
+    console.log("Submit Order to Restaurant Id: " + this.rstId);
+  	const data = {items: this.orderItems, type: 'order', rstId: this.rstId};
+    this.menuService.submitOrder(data);
   }
 
   ngOnInit() {}
