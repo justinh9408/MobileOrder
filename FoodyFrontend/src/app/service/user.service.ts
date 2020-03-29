@@ -86,7 +86,7 @@ export class UserService {
         console.log('login', result);
       } else {
         console.log('not log in', result);
-        window.location.href = '/log-in';
+        window.location.href = '/log-in/0';
       }
     });
   }

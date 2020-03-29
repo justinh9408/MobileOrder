@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { RestaurantService } from '../service/restaurant.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -14,10 +15,12 @@ export class RegisterPage implements OnInit {
   email: string;
   password: string;
   confirm: string;
+  isRst:string;
 
-  constructor(public rstService:RestaurantService, public userService: UserService) { }
+  constructor(public rstService:RestaurantService, public userService: UserService,private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isRst = this.route.snapshot.paramMap.get('isRst');
   }
 
   passwordCheck() {
@@ -29,15 +32,28 @@ export class RegisterPage implements OnInit {
   }
 
   register() {
+    if(this.isRst = '0'){
     const item = {
       name: this.name,
       email: this.email,
       password: this.password
     };
-    this.rstService.register(item).subscribe(result => {
+    this.userService.register(item).subscribe(result => {
       console.log('success!', result);
       window.location.href = '/admins/home?rstid=2';
     });
+    }
+    else if(this.isRst = '1'){
+      const item = {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      };
+      this.rstService.register(item).subscribe(result => {
+        console.log('success!', result);
+        window.location.href = '/admins/home?rstid=2';
+      });
+    }
   }
 
 
