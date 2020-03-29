@@ -15,12 +15,14 @@ export class RegisterPage implements OnInit {
   email: string;
   password: string;
   confirm: string;
-  isRst:string;
+  isRst: string;
 
-  constructor(public rstService:RestaurantService, public userService: UserService,private route: ActivatedRoute) { }
+  constructor(public rstService: RestaurantService, public userService: UserService,
+              private route: ActivatedRoute) {
+                this.isRst = this.route.snapshot.paramMap.get('isRst');
+              }
 
   ngOnInit() {
-    this.isRst = this.route.snapshot.paramMap.get('isRst');
   }
 
   passwordCheck() {
@@ -32,26 +34,20 @@ export class RegisterPage implements OnInit {
   }
 
   register() {
-    if(this.isRst = '0'){
     const item = {
       name: this.name,
       email: this.email,
       password: this.password
     };
+    if (this.isRst === '0') {
     this.userService.register(item).subscribe(result => {
       console.log('success!', result);
-      window.location.href = '/admins/home?rstid=2';
+      window.location.href = '/';
     });
-    }
-    else if(this.isRst = '1'){
-      const item = {
-        name: this.name,
-        email: this.email,
-        password: this.password
-      };
+    } else if (this.isRst === '1') {
       this.rstService.register(item).subscribe(result => {
         console.log('success!', result);
-        window.location.href = '/admins/home?rstid=2';
+        window.location.href = '/admins/home';
       });
     }
   }

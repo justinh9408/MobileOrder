@@ -28,20 +28,20 @@ export class UserService {
   }
 
  sendMessage(data){
-  this.socket.emit('add-message', data);  
+  this.socket.emit('add-message', data);
  }
  getMessages() {
   let observable = new Observable(observer => {
    this.socket = io(this.url);
    this.socket.on('message', (data) => {
-    observer.next(data);  
+    observer.next(data);
    });
    return () => {
     this.socket.disconnect();
-   }; 
-  })   
+   };
+  });
   return observable;
- } 
+ }
 
 
   getUsers(): Observable<any> {
@@ -60,7 +60,7 @@ export class UserService {
   }
 
   login(item): Observable<any> {
-    return this.http.post(this.hostName + '/login', item);
+    return this.http.post(this.hostName + '/usrlogin', item);
   }
 
   setLoginStorage(user) {

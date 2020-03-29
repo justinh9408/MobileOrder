@@ -22,7 +22,7 @@ export class RestaurantService {
        this.hostName = 'http://localhost:3000';
     }
     this.headers.set('Access-Control-Allow-Headers', 'Content-Type');
-    
+
     this.options = { headers: this.headers,  withCredentials: true};
   }
 
@@ -68,7 +68,7 @@ export class RestaurantService {
         console.log('login', result);
       } else {
         console.log('not log in', result);
-        window.location.href = '/log-in';
+        window.location.href = '/log-in/1';
       }
     });
   }
