@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OrderService } from '../service/order.service';
+import { MenuService } from '../service/menu.service';
 
 @Component({
   selector: 'app-menu-item',
@@ -14,7 +15,7 @@ export class MenuItemComponent implements OnInit {
   orderItems = []
 
 
-  constructor(public orderService: OrderService) { }
+  constructor(public orderService: OrderService, public menuService: MenuService) { }
 
   orderItem(item){
   	this.orderItems.push(item);

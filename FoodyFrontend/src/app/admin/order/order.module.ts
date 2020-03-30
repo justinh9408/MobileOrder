@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { OrderPage } from './order.page';
 
+import { OrderItemComponent } from '../../order-item/order-item.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +23,9 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [OrderPage]
+  declarations: [
+    OrderPage,
+    OrderItemComponent
+  ]
 })
 export class OrderPageModule {}
