@@ -12,19 +12,18 @@ export class MenuItemComponent implements OnInit {
   @Input() category: any;
   @Input() rstId: any;
 
-  orderItems = []
+  orderItems = [];
 
 
   constructor(public orderService: OrderService, public menuService: MenuService) { }
 
   orderItem(item){
-  	this.orderItems.push(item);
-
+    this.orderItems.push(item);
   }
 
   submitOrder(){
     console.log("Submit Order to Restaurant Id: " + this.rstId);
-  	const data = {items: this.orderItems, type: 'order', rstId: this.rstId};
+    const data = {items: this.orderItems, type: 'order', rstId: this.rstId};
     this.orderService.submitOrder(data);
   }
 

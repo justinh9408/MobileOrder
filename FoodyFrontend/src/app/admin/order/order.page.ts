@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output } from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { OrderService } from '../../service/order.service';
 import {Router, ActivatedRoute, Params} from '@angular/router';
@@ -12,7 +12,8 @@ import { Storage } from '@ionic/storage';
 })
 export class OrderPage implements OnInit, OnDestroy {
 
-  items;
+  @Output() orderInShow: any;
+  items: any;
   connection = null;
   constructor(public userService: UserService,public orderService: OrderService,public storage: Storage,
               private socket: Socket, private activatedRoute: ActivatedRoute) { }
