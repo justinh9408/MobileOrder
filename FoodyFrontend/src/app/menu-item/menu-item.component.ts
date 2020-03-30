@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MenuService } from '../service/menu.service';
+import { OrderService } from '../service/order.service';
 
 @Component({
   selector: 'app-menu-item',
@@ -14,7 +14,7 @@ export class MenuItemComponent implements OnInit {
   orderItems = []
 
 
-  constructor(public menuService: MenuService) { }
+  constructor(public orderService: OrderService) { }
 
   orderItem(item){
   	this.orderItems.push(item);
@@ -24,7 +24,7 @@ export class MenuItemComponent implements OnInit {
   submitOrder(){
     console.log("Submit Order to Restaurant Id: " + this.rstId);
   	const data = {items: this.orderItems, type: 'order', rstId: this.rstId};
-    this.menuService.submitOrder(data);
+    this.orderService.submitOrder(data);
   }
 
   ngOnInit() {}

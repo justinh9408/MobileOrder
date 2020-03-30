@@ -8,9 +8,9 @@ import { Storage } from '@ionic/storage';
   providedIn: 'root'
 })
 export class UserService {
-   private url = 'http://localhost:3000'; 
-   private socket = io(this.url);
-  hostName = 'https://ionicdemobackend.azurewebsites.net';
+
+  hostName = 'http://localhost:3000';
+  private socket = io(this.hostName);
 
   headers = new HttpHeaders().set(
     'Content-type',
@@ -20,28 +20,24 @@ export class UserService {
   options: any;
 
   constructor(public http: HttpClient, public storage: Storage) {
-    if (window.location.href.indexOf('localhost') > 0) {
-      this.hostName = 'http://localhost:3000';
-    }
     this.headers.set('Access-Control-Allow-Headers', 'Content-Type');
     this.options = { headers: this.headers,  withCredentials: true};
   }
 
- sendMessage(data){
-  this.socket.emit('add-message', data);
- }
- getMessages() {
-  let observable = new Observable(observer => {
-   this.socket = io(this.url);
-   this.socket.on('message', (data) => {
-    observer.next(data);
-   });
-   return () => {
-    this.socket.disconnect();
-   };
-  });
-  return observable;
- }
+  sendMessage(data){
+    this.socket.emit('add-message', data);
+  }
+  getMessages() {
+    let observable = new Observable(observer => {
+    this.socket.on('message', (data) => {
+      observer.next(data);
+    });
+    return () => {
+      this.socket.disconnect();
+    };
+    });
+    return observable;
+  }
 
 
   getUsers(): Observable<any> {
