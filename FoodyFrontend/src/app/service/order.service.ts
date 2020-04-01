@@ -56,7 +56,9 @@ export class OrderService {
     });
     modal.onDidDismiss().then(data => {
       this.storage.get('order').then(order => {
-        ref.order = order;
+        if (ref) {
+          ref.order = order;
+        }
         console.log(data);
         if (data.data.submit) {
           // submit
