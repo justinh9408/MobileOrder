@@ -3,7 +3,6 @@ import { OrderService } from '../service/order.service';
 import { MenuService } from '../service/menu.service';
 import { Storage } from '@ionic/storage';
 import { AlertController, ToastController, ModalController } from '@ionic/angular';
-import { OrderModalPage } from '../order-modal/order-modal.page';
 
 @Component({
   selector: 'app-menu-item',
@@ -22,7 +21,7 @@ export class MenuItemComponent implements OnInit {
 
   constructor(public orderService: OrderService, public menuService: MenuService,
               public storage: Storage, public alertController: AlertController,
-              public toastController: ToastController, public modalController: ModalController) {
+              public toastController: ToastController) {
     storage.get('order').then(result => {
       if (result) {
         this.order = result;
@@ -124,7 +123,7 @@ export class MenuItemComponent implements OnInit {
   }
 
   showOrder() {
-    this.presentModal();
+    this.orderService.presentModal(this);
   }
 
   async presentToast(mes) {
@@ -133,31 +132,6 @@ export class MenuItemComponent implements OnInit {
       duration: 2000
     });
     toast.present();
-  }
-
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: OrderModalPage,
-      componentProps: {
-        hostName: this.orderService.hostName
-      }
-    });
-    modal.onDidDismiss().then(data => {
-      this.storage.get('order').then(order => {
-        this.order = order;
-        console.log(data);
-        if (data.data.submit) {
-          // submit
-          this.orderService.createOrder(this.order).subscribe(result => {
-            console.log(result);
-            this.orderService.submitOrder(this.order);
-            this.storage.remove('order');
-          });
-
-        }
-      });
-    });
-    return await modal.present();
   }
 
 }
