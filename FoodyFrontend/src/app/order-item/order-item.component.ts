@@ -9,6 +9,7 @@ export class OrderItemComponent implements OnInit {
 
   @Input() order: any;
 
+
   constructor() { }
 
   ngOnInit() {}

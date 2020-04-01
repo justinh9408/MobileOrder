@@ -4,12 +4,46 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+
+<ion-split-pane contentId="menu-content" when="xs" style="margin-top: 100px">
+  <ion-menu contentId="order-content" style="min-width: auto;">
+    <ion-content>
+      <ion-list>
+        <ion-item *ngFor="let order of orders" (click)="orderClick(order)">
+          <ion-label>{{order.name}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-content id="menu-content">
+    <app-order-item [order]="orderInShow"></app-order-item>
+  </ion-content>
+</ion-split-pane>
+
+<!-- <ion-content>
   <app-order-item [order]="orderInShow"></app-order-item>
   <ion-card>
-	<ion-item color="primary" *ngFor="let item of items">
-	    <ion-label>{{item.name}}</ion-label>
-		<ion-label>{{item.description}}</ion-label>
-	</ion-item>
+  	<ion-item color="primary" *ngFor="let item of items">
+  	   <ion-label>{{item.name}}</ion-label>
+  	   <ion-label>{{item.description}}</ion-label>
+  	</ion-item>
   </ion-card>
-</ion-content>
+</ion-content> -->
+
+<!-- 
+<ion-split-pane contentId="menu-content" when="xs" style="margin-top: 100px">
+  <ion-menu contentId="menu-content" style="min-width: auto;">
+    <ion-content>
+      <ion-list>
+        <ion-item *ngFor="let category of categories" (click)="categoryClick(category)">
+          <ion-label>{{category.name}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-content id="menu-content">
+    <app-menu-item [category]="categoryInShow" [rstId]="rstId"></app-menu-item>
+  </ion-content>
+</ion-split-pane>
+ -->
