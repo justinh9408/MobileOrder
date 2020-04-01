@@ -1,7 +1,5 @@
-.name{
+#name{
     font-weight: bold;
-    --color: whitesmoke;
-    --background: rgba(255,142,106);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-left-radius: 3px;
@@ -27,13 +25,10 @@
 }
 
 
-.category{
-    ion-item, ion-content{
-        --color: white;
-        --background: rgba(239,173,133);
+#category{
+    min-width: auto;
+    ion-list {
+        padding-top: 0;
+        padding-bottom: 0;
     }
-}
-
-.item{
-    --background: rgba(249,213,177);
 }

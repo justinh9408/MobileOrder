@@ -1,15 +1,5 @@
-ion-item, ion-content{
-    --background: rgba(249,213,177);
-}
-
-.order{
-    background-color: rgba(249,213,177);
-    padding-left: 10px; 
-}
-
-ion-button{
-    --background: rgba(133,172,168);
-    display: block;
-    padding-right: 10px;
+ion-list {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 

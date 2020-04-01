@@ -24,3 +24,34 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+:root {
+    --ion-color-primary: rgba(255,142,106);
+    --ion-color-primary-rgb: rgba(255,142,106);
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255,255,255;
+    --ion-color-primary-shade: rgba(239,173,133);
+    --ion-color-primary-tint: rgba(239,173,133);
+
+    --ion-color-secondary: rgba(255,142,106);
+    --ion-color-secondary-rgb: rgba(255,142,106);
+    --ion-color-secondary-contrast: #ffffff;
+    --ion-color-secondary-contrast-rgb: 255,255,255;
+    --ion-color-secondary-shade: rgba(239,173,133);
+    --ion-color-secondary-tint: rgba(239,173,133);
+
+    --ion-color-secondary: rgba(239,173,133);
+    --ion-color-secondary-rgb: rgba(239,173,133);
+    --ion-color-secondary-contrast: white;
+    --ion-color-secondary-contrast-rgb: 0,0,0;
+    --ion-color-secondary-shade: rgba(249,213,177);
+    --ion-color-secondary-tint: rgba(249,213,177);
+
+    --ion-color-tertiary: rgba(249,213,177);
+    --ion-color-tertiary-rgb: rgba(249,213,177);
+    --ion-color-tertiary-contrast: white;
+    --ion-color-tertiary-contrast-rgb: 0,0,0;
+    --ion-color-tertiary-shade: rgba(249,213,177);
+    --ion-color-tertiary-tint: rgba(249,213,177);
+  }
+

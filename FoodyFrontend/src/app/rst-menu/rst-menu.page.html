@@ -1,27 +1,29 @@
 <ion-header>
-	<ion-toolbar class="name">
+	<ion-toolbar id="name" color="primary">
 		<ion-thumbnail slot="start">
 			<img src="{{rstService.hostName}}{{restaurant.imagePath}}">
 		</ion-thumbnail>
-		<ion-label slot="start">
+		<ion-label slot="start" class="ion-text-wrap">
 			<h2>&nbsp;{{restaurant.name}}</h2>
 			<h3>&nbsp;{{restaurant.description}}</h3>
 		</ion-label>
   	</ion-toolbar>
 </ion-header>
 
-<ion-split-pane class="flex-container" contentId="menu-content" when="xs" style="margin-top: 100px">
-	<ion-menu class="category" contentId="menu-content" style="min-width: auto;">
-		<ion-content >
-			<ion-list >
-				<ion-item *ngFor="let category of categories" (click)="categoryClick(category)">
-					<ion-label class="ion-text-capitalize">{{category.name}}</ion-label>
-				</ion-item>
-			</ion-list>
-		</ion-content>
-	</ion-menu>
+<ion-content>
+	<ion-split-pane contentId="menu-content" when="xs">
+		<ion-menu id="category" contentId="menu-content">
+			<ion-content color="tertiary">
+				<ion-list>
+					<ion-item *ngFor="let category of categories" (click)="categoryClick(category)" color="secondary">
+						<ion-label class="ion-text-capitalize" class="ion-text-wrap">{{category.name}}</ion-label>
+					</ion-item>
+				</ion-list>
+			</ion-content>
+		</ion-menu>
 
-	<ion-content id="menu-content">
-		<app-menu-item [category]="categoryInShow" [rstId]="rstId"></app-menu-item>
-	</ion-content>
-</ion-split-pane>
+		<ion-content id="menu-content">
+			<app-menu-item [category]="categoryInShow" [rstId]="rstId"></app-menu-item>
+		</ion-content>
+	</ion-split-pane>
+</ion-content>
