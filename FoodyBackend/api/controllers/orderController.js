@@ -4,17 +4,30 @@ const responseFunction = require('../../server').responseFunction;
 
 exports.create_a_order = function(req, res) {
     req.sql.query("insert into orders (rstID, userID) values (?, ?);",
-    [req.body.rstID, req.body.userID], (err, data) => {
+    [req.body.rstId, req.body.userId], (err, data) => {
         if (err) {
             res.json(err);
         } else {
-            // req.sql.query("insert into orderItems (orderID, menuItemID, amount) values ?",
-            // [[[1, 1, 1], [1, 1, 1]]])
-            req.sql.query("select * from orders where id = ?",
-            [data.insertId],
-            (err2, data2) => {
-                responseFunction(res, err2, data2);
+            let itemValueArr = [[]];
+            const items = req.body.items;
+            for (let i = 0; i < items.length; i++) {
+                let item = items[i];
+                const itemValue = [data.insertId, item.id, item.amount];
+                itemValueArr[0].push(itemValue);
+            }
+            req.sql.query("insert into orderItems (orderID, menuItemID, amount) values ?",
+            itemValueArr, (err2, data2) => {
+                if (err2) {
+                    res.json(err2);
+                } else {
+                    req.sql.query("select * from orders where id = ?",
+                    [data.insertId],
+                    (err3, data3) => {
+                        responseFunction(res, err3, data3);
+                    })
+                }
             })
+            
         }
     });
 

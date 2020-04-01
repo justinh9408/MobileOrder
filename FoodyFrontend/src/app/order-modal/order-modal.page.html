@@ -1,0 +1,33 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Current Order</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label *ngIf="!order || order.items.length == 0">There is no item here</ion-label>
+  <ion-item-sliding *ngFor="let item of order?.items">
+    <ion-item-options side="end">
+      <ion-item-option color="danger" (click)="itemDeleteAlert(item.id)">Delete</ion-item-option>
+    </ion-item-options>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <img src="{{hostName}}{{item.imagePath}}">
+      </ion-thumbnail>
+      <ion-label (click)="orderItem(item)">
+        <h2>{{item.name}}</h2>
+        <p>{{item.description}}</p>
+      </ion-label>
+      <ion-chip slot="end">
+        <ion-label>$ {{item.price | number:'1.2-2'}}</ion-label>
+      </ion-chip>
+      <ion-input slot="end" [(ngModel)]="item.amount" type="number" (change)="orderUpdate()">X&nbsp;</ion-input>
+    </ion-item>
+  </ion-item-sliding>
+  <ion-buttons *ngIf="order && order.items.length > 0">
+    <ion-button size="large" (click)="submit()">Submit Order</ion-button>
+  </ion-buttons>
+</ion-content>

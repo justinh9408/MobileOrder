@@ -5,22 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LogInPage } from './log-in.page';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: LogInPage
-  }
-];
+import { OrderModalPage } from './order-modal.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule
   ],
-  declarations: [LogInPage]
+  declarations: [OrderModalPage]
 })
-export class LogInPageModule {}
+export class OrderModalPageModule {}

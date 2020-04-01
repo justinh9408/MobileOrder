@@ -12,17 +12,20 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import { OrderModalPage } from './order-modal/order-modal.page';
+import { OrderModalPageModule } from './order-modal/order-modal.module';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  entryComponents: [],
+  entryComponents: [OrderModalPage],
   imports: [BrowserModule,
             IonicModule.forRoot(),
             AppRoutingModule,
             HttpClientModule,
+            OrderModalPageModule,
            IonicStorageModule.forRoot(),
            SocketIoModule.forRoot(config)
           ],
