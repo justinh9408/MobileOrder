@@ -12,4 +12,7 @@ module.exports = function(app) {
   app.route('/rstimage/:id')
     .get(fileCtrl.get_rst_image)
     .post(upload.single('rstImage'), fileCtrl.save_rst_image);
+
+  app.route('/logo')
+    .get(fileCtrl.get_logo);
 };
