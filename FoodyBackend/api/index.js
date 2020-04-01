@@ -15,4 +15,7 @@ module.exports = function(app) {
 
     var fileRoute = require('./routes/fileRoute');
     fileRoute(app);
+
+    var orderRoute = require('./routes/orderRoute');
+    orderRoute(app);
 };

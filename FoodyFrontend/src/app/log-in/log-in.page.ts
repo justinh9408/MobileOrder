@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { UserService } from '../service/user.service';
 import { RestaurantService } from '../service/restaurant.service';
-import {Router} from "@angular/router"
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -13,10 +13,14 @@ export class LogInPage implements OnInit {
 
   name: string;
   password: string;
-
+  isRst: string;
   valid = true;
 
-  constructor(public rstService:RestaurantService,private router: Router) { }
+  constructor(public rstService: RestaurantService,
+              public userService: UserService, private router: Router,
+              private route: ActivatedRoute) {
+                this.isRst = this.route.snapshot.paramMap.get('isRst');
+              }
 
   ngOnInit() {
   }
@@ -26,16 +30,27 @@ export class LogInPage implements OnInit {
       name: this.name,
       password: this.password
     };
-    this.rstService.login(item).subscribe(result => {
-      console.log(result);
-      if (result.length > 0) {
-        this.valid = true;
-        this.rstService.setLoginStorage(result[0]);
-        
-      } else {
-        this.valid = false;
-      }
-    });
+    if (this.isRst === '0') {
+      this.userService.login(item).subscribe(result => {
+        console.log(result);
+        if (result.length > 0) {
+          this.valid = true;
+          this.userService.setLoginStorage(result[0]);
+        } else {
+          this.valid = false;
+        }
+      });
+    } else if (this.isRst === '1') {
+      this.rstService.login(item).subscribe(result => {
+        console.log(result);
+        if (result.length > 0) {
+          this.valid = true;
+          this.rstService.setLoginStorage(result[0]);
+        } else {
+          this.valid = false;
+        }
+      });
+    }
   }
 
 }

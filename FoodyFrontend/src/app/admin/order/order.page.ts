@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output } from '@angular/core';
 import { UserService } from '../../service/user.service';
-import { MenuService } from '../../service/menu.service';
+import { OrderService } from '../../service/order.service';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { Socket } from 'ng-socket-io';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-order',
@@ -11,14 +12,19 @@ import { Socket } from 'ng-socket-io';
 })
 export class OrderPage implements OnInit, OnDestroy {
 
-  items;
+  @Output() orderInShow: any;
+  items: any;
   connection = null;
-  constructor(public userService: UserService,public menuService: MenuService,
+  constructor(public userService: UserService,public orderService: OrderService,public storage: Storage,
               private socket: Socket, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.connection = this.menuService.getMessages().subscribe(order => {
-      this.items = order["items"];
+    this.storage.get('rstId').then((rstId) => {
+      console.log("got rstId: " + rstId);
+      this.connection = this.orderService.receiveOrder(rstId).subscribe(order => {
+        console.log("Received order!");
+        this.items = order["items"];
+      });
     });
   }
 

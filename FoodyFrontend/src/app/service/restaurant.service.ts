@@ -8,7 +8,7 @@ import { Storage } from '@ionic/storage';
 })
 export class RestaurantService {
 
-  hostName = 'https://ionicdemobackend.azurewebsites.net';
+  hostName = 'http://localhost:3000';
 
   headers = new HttpHeaders().set(
     'Content-type',
@@ -18,11 +18,8 @@ export class RestaurantService {
   options: any;
 
   constructor(public http: HttpClient, public storage: Storage) {
-    if (window.location.href.indexOf('localhost') > 0) {
-       this.hostName = 'http://localhost:3000';
-    }
     this.headers.set('Access-Control-Allow-Headers', 'Content-Type');
-    
+
     this.options = { headers: this.headers,  withCredentials: true};
   }
 
@@ -68,7 +65,7 @@ export class RestaurantService {
         console.log('login', result);
       } else {
         console.log('not log in', result);
-        window.location.href = '/log-in';
+        window.location.href = '/log-in/1';
       }
     });
   }

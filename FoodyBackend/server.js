@@ -73,9 +73,12 @@ io.on('connection', (socket) => {
         console.log('user disconnected');
     });
 
-    socket.on('add-message', (data) => {
-        console.log("add-message： " + data.items[0].name + " " + data.type)
-        io.emit('message', {type:'new-message', items: data.items});  
+    socket.on('submitOrder', (data) => {
+        // build a event name based on the rst id submitted from the customer 
+        let orderEvent = 'receiveOrder-' + data.rstId;
+        console.log("Order submitted! Event name: " + orderEvent);
+        // emit to the specific rst owner with the coresponding rstId
+        io.emit(orderEvent, {type:'newOrder', items: data.items});  
     });
 });
 

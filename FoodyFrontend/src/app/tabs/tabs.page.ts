@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  constructor(userService: UserService) {
+    userService.checkLoginStatus();
+  }
 
 }
