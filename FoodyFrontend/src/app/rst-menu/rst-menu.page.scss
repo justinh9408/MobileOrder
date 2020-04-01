@@ -1,0 +1,39 @@
+.name{
+    font-weight: bold;
+    --color: whitesmoke;
+    --background: rgba(255,142,106);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    height: 90px;
+    padding-top: 7px;
+    padding-left: 15px;
+    
+    ion-label{
+        padding-left: 30px;
+    }
+
+    h2{
+        font-size: 30px;
+    }
+    
+    ion-thumbnail{
+        --size: 70px;
+    }
+    img{
+        border-radius: 8px;
+    }
+}
+
+
+.category{
+    ion-item, ion-content{
+        --color: white;
+        --background: rgba(239,173,133);
+    }
+}
+
+.item{
+    --background: rgba(249,213,177);
+}

@@ -12,10 +12,11 @@
     </ion-chip>
   </ion-item>
 </ion-list>
-<ion-list>
+
+<ion-list class="order">
   Items ordered:
   <ion-item *ngFor="let orderItm of orderItems">
     - {{orderItm.name}}
   </ion-item>
-  <ion-button *ngIf="orderItems.length != 0" (click)="submitOrder()">Order</ion-button>
+  <ion-button expand="block" *ngIf="orderItems.length != 0" (click)="submitOrder()">Order</ion-button>
 </ion-list>
