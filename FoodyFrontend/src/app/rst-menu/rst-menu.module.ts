@@ -9,6 +9,8 @@ import { RstMenuPage } from './rst-menu.page';
 
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 
+import { OrderModalPageModule } from '../order-modal/order-modal.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -21,7 +23,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    OrderModalPageModule
   ],
   declarations: [
     RstMenuPage,
