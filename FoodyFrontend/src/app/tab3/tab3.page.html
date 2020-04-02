@@ -4,14 +4,13 @@
       Order History
     </ion-title>
     <ion-buttons slot="start">
-      <ion-menu-button autoHide="false"></ion-menu-button>
+      <ion-menu-button autoHide="false" menu="menu"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-split-pane contentId="order-user-content" when="xs">
-    <ion-menu contentId="order-user-content" id="order">
+  <ion-row style="height: 100%;">
+    <ion-col id="order" size="3">
       <ion-content color="tertiary">
         <ion-list>
           <ion-item *ngFor="let order of orders" (click)="orderClick(order)" color="secondary">
@@ -22,9 +21,12 @@
           </ion-item>
         </ion-list>
       </ion-content>
-    </ion-menu>
-    <ion-content id="order-user-content">
-      <app-order-item [order]="orderInShow"></app-order-item>
-    </ion-content>
-  </ion-split-pane>
+    </ion-col>
+    <ion-col size="9">
+      <ion-content>
+        <app-order-item [order]="orderInShow"></app-order-item>
+      </ion-content>
+    </ion-col>
+  </ion-row>
 </ion-content>
+

@@ -11,19 +11,20 @@
 </ion-header>
 
 <ion-content>
-	<ion-split-pane contentId="menu-content" when="xs">
-		<ion-menu id="category" contentId="menu-content">
+	<ion-row style="height: 100%;">
+		<ion-col size="3" id="category">
 			<ion-content color="tertiary">
 				<ion-list>
 					<ion-item *ngFor="let category of categories" (click)="categoryClick(category)" color="secondary">
-						<ion-label class="ion-text-capitalize" class="ion-text-wrap">{{category.name}}</ion-label>
+						<ion-label class="ion-text-wrap">{{category.name}}</ion-label>
 					</ion-item>
 				</ion-list>
 			</ion-content>
-		</ion-menu>
-
-		<ion-content id="menu-content">
-			<app-menu-item [category]="categoryInShow" [rstId]="rstId"></app-menu-item>
-		</ion-content>
-	</ion-split-pane>
+		</ion-col>
+		<ion-col size="9">
+			<ion-content id="menu-content">
+				<app-menu-item [category]="categoryInShow" [rstId]="rstId"></app-menu-item>
+			</ion-content>
+		</ion-col>
+	</ion-row>
 </ion-content>
