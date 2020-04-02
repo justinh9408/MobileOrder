@@ -1,0 +1,3 @@
+use rst;
+
+alter TABLE orders add created DATETIME NOT NULL default now();

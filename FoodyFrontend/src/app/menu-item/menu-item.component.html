@@ -3,17 +3,17 @@
     <ion-thumbnail slot="start">
       <img src="{{menuService.hostName}}{{item.imagePath}}">
     </ion-thumbnail>
-    <ion-label class="ion-text-wrap">
-      <h2>{{item.name}}</h2>
+    <ion-label>
+      <h2 class="ion-text-wrap">{{item.name}}</h2>
       <p>{{item.description}}</p>
+      <ion-chip>
+        <ion-label>$ {{item.price | number:'1.2-2'}}</ion-label>
+      </ion-chip>
     </ion-label>
-    <ion-chip slot="end">
-      <ion-label>$ {{item.price | number:'1.2-2'}}</ion-label>
-    </ion-chip>
   </ion-item>
 </ion-list>
 <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-  <ion-fab-button color="light" (click)="showOrder()">
+  <ion-fab-button color="primary" (click)="showOrder()">
     <ion-icon name="restaurant"></ion-icon>
   </ion-fab-button>
 </ion-fab>

@@ -17,14 +17,15 @@
       <ion-thumbnail slot="start">
         <img src="{{hostName}}{{item.imagePath}}">
       </ion-thumbnail>
-      <ion-label (click)="orderItem(item)">
-        <h2>{{item.name}}</h2>
-        <p>{{item.description}}</p>
+      <ion-label>
+        <h2 class="ion-text-wrap">{{item.name}}</h2>
+        <ion-chip>
+          <ion-label>$ {{item.price | number:'1.2-2'}}</ion-label>
+        </ion-chip>
       </ion-label>
-      <ion-chip slot="end">
-        <ion-label>$ {{item.price | number:'1.2-2'}}</ion-label>
-      </ion-chip>
-      <ion-input slot="end" [(ngModel)]="item.amount" type="number" (change)="orderUpdate()">X&nbsp;</ion-input>
+      <ion-icon name="remove-circle" (click)="decrement(item)" color="primary"></ion-icon>
+        {{item.amount}}
+      <ion-icon name="add-circle" (click)="increment(item)" color="primary"></ion-icon>
     </ion-item>
   </ion-item-sliding>
   <ion-buttons *ngIf="order && order.items.length > 0">

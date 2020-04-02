@@ -13,9 +13,9 @@
           <br/>
           {{category.description}}
         </ion-label>
-        <ion-icon slot="end" name="create" (click)="categoryEdit(category)"></ion-icon>
-        <ion-icon slot="end" name="remove-circle" (click)="categoryDeleteAlert(category.id)"></ion-icon>
-        <ion-icon slot="end" name="arrow-dropdown" (click)="collapse(category)"></ion-icon>
+        <ion-icon slot="end" color="primary" name="create" (click)="categoryEdit(category)"></ion-icon>
+        <ion-icon slot="end" color="primary" name="remove-circle" (click)="categoryDeleteAlert(category.id)"></ion-icon>
+        <ion-icon slot="end" color="primary" name="arrow-dropdown" (click)="collapse(category)"></ion-icon>
       </ion-item>
       <div *ngIf="category.editMode">
         <ion-item>
@@ -38,7 +38,7 @@
             <img src="{{menuService.hostName}}{{item.imagePath}}">
           </ion-thumbnail>
           <ion-label>
-            <h2>{{item.name}}</h2>
+            <h2 class="ion-text-wrap">{{item.name}}</h2>
             <p>{{item.description}}</p>
           </ion-label>
           <ion-chip slot="end">
@@ -51,7 +51,7 @@
   </ion-card>
   <ion-item></ion-item>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button color="light" (click)="addCategoryPopup()">
+    <ion-fab-button color="primary" (click)="addCategoryPopup()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

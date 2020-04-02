@@ -10,7 +10,10 @@
       <ion-content color="tertiary">
         <ion-list>
           <ion-item *ngFor="let order of orders" (click)="orderClick(order)" color="secondary">
-            <ion-label>{{order.name}}</ion-label>
+            <ion-label>
+              <h2 class="ion-text-wrap"># {{order.id}}</h2>
+              <ion-icon name="timer"></ion-icon>{{getTimeStamp(order.created)}}
+            </ion-label>
           </ion-item>
         </ion-list>
       </ion-content>

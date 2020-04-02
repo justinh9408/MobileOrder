@@ -82,4 +82,14 @@ export class OrderModalPage implements OnInit {
     toast.present();
   }
 
+  increment(item) {
+    item.amount ++;
+    this.orderUpdate();
+  }
+
+  decrement(item) {
+    item.amount --;
+    this.orderUpdate();
+  }
+
 }

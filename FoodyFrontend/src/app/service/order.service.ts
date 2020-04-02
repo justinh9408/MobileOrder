@@ -64,8 +64,12 @@ export class OrderService {
           // submit
           this.createOrder(order).subscribe(result => {
             console.log(result);
-            this.submitOrder(order);
-            this.storage.remove('order');
+            if (result && result.length > 0) {
+              order.id = result[0].id;
+              order.created = new Date().toLocaleString();
+              this.submitOrder(order);
+              this.storage.remove('order');
+            }
           });
 
         }

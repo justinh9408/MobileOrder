@@ -34,28 +34,28 @@ exports.create_a_order = function(req, res) {
 }
 
 exports.list_all_orders_by_rst = function(req, res) {
-    req.sql.query("select * from orders where rstID = ?",
+    req.sql.query("select * from orders where rstID = ? order by created desc",
     [req.params.rstId], (err, data) => {
         responseFunction(res, err, data);
     });
 }
 
 exports.list_all_orders_by_user = function(req, res) {
-    req.sql.query("select * from orders where userID = ?",
+    req.sql.query("select * from orders where userID = ? order by created desc",
     [req.params.userId], (err, data) => {
         responseFunction(res, err, data);
     });
 }
 
 exports.list_all_order_items_by_rst = function(req, res) {
-    req.sql.query("select i.*, m.name, m.price from orders o left join orderItems i on o.id = i.orderID left join menuItems m on i.menuItemID = m.id where o.rstId = ? and i.isDeleted = 0",
+    req.sql.query("select i.*, m.name, m.price, m.imagePath from orders o left join orderItems i on o.id = i.orderID left join menuItems m on i.menuItemID = m.id where o.rstId = ? and i.isDeleted = 0",
     [req.params.rstId], (err, data) => {
         responseFunction(res, err, data);
     });
 }
 
 exports.list_all_order_items_by_user = function(req, res) {
-    req.sql.query("select i.*, m.name, m.price from orders o left join orderItems i on o.id = i.orderID left join menuItems m on i.menuItemID = m.id where o.userID = ? and i.isDeleted = 0",
+    req.sql.query("select i.*, m.name, m.price, m.imagePath from orders o left join orderItems i on o.id = i.orderID left join menuItems m on i.menuItemID = m.id where o.userID = ? and i.isDeleted = 0",
     [req.params.userId], (err, data) => {
         responseFunction(res, err, data);
     });

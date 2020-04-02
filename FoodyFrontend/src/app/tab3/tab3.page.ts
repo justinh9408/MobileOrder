@@ -12,6 +12,7 @@ export class Tab3Page {
 
   @Output() orderInShow: any;
   orders: any;
+  today = new Date();
 
   constructor(public orderService: OrderService, public storage: Storage) {
     this.storage.get('userId').then(userId => {
@@ -35,6 +36,15 @@ export class Tab3Page {
 
   orderClick(order) {
     this.orderInShow = order;
+  }
+
+  getTimeStamp(timeStr) {
+    const orderDate = new Date(timeStr);
+    if (orderDate.toLocaleDateString() === this.today.toLocaleDateString()) {
+      return orderDate.toLocaleTimeString();
+    } else {
+      return orderDate.toLocaleDateString();
+    }
   }
 
 }
