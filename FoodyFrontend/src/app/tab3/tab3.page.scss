@@ -1,1 +1,7 @@
-
+#order{
+    min-width: auto;
+    ion-list {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
