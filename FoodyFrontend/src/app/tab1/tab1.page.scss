@@ -1,4 +1,26 @@
-.welcome-card img {
+.welcome-card img{
   max-height: 35vh;
   overflow: hidden;
+}
+
+ion-item img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+  height: auto;
+}
+
+ion-slides{
+    padding-top: 10px;
+    --bullet-background-active: white;
+    --scroll-bar-background-active: white;
+}
+
+ion-thumbnail,img{
+    width: 100%;
+    height: 200px;
+    display: inline-block;
+    background-size: cover;
+    position: center center;
 }
