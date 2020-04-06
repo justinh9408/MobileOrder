@@ -10,9 +10,12 @@ import { Router } from '@angular/router';
 export class Tab2Page {
 
   public rstList = [];
+  public rstListFiltered = [];
+
   constructor(public rstService: RestaurantService, private router: Router) {
     this.rstService.getRestaurants().subscribe(items => {
       this.rstList = items;
+      this.rstListFiltered = items;
     });
   }
 
@@ -20,6 +23,16 @@ export class Tab2Page {
     this.router.navigate(['/tabs/rst-menu/' + id]);
   }
 
-
+  filter(searchStr) {
+    if (searchStr) {
+      this.rstListFiltered = [];
+      this.rstList.forEach(rst => {
+        if ((rst.name && rst.name.includes(searchStr)) ||
+            (rst.description && rst.description.includes(searchStr))) {
+          this.rstListFiltered.push(rst);
+        }
+      });
+    }
+  }
 
 }

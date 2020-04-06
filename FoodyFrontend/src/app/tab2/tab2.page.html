@@ -10,8 +10,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar></ion-searchbar>
-  <ion-item *ngFor="let rst of rstList" (click)="goToPage(rst.id)">
+  <ion-searchbar (ionInput)="filter($event.target.value)"></ion-searchbar>
+  <ion-item *ngFor="let rst of rstListFiltered" (click)="goToPage(rst.id)">
       <ion-thumbnail slot="start">
         <img src="{{rstService.hostName}}{{rst.imagePath ? rst.imagePath : '/logo'}}">
       </ion-thumbnail>
