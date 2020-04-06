@@ -1,7 +1,7 @@
 <ion-list *ngIf="category && category.items">
   <ion-item *ngFor="let item of category.items" (click)="orderItemPopup(item)">
     <ion-thumbnail slot="start">
-      <img src="{{menuService.hostName}}{{item.imagePath}}">
+      <img src="{{menuService.hostName}}{{item.imagePath ? item.imagePath : '/logo'}}">
     </ion-thumbnail>
     <ion-label>
       <h2 class="ion-text-wrap">{{item.name}}</h2>

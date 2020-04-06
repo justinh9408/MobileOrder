@@ -1,7 +1,7 @@
 <ion-header>
 	<ion-toolbar id="name" color="primary">
 		<ion-thumbnail slot="start">
-			<img src="{{rstService.hostName}}{{restaurant.imagePath}}">
+			<img src="{{rstService.hostName}}{{restaurant.imagePath ? restaurant.imagePath : '/logo'}}">
 		</ion-thumbnail>
 		<ion-label slot="start">
 			<h2 class="ion-text-wrap">&nbsp;{{restaurant.name}}</h2>

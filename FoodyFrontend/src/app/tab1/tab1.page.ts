@@ -11,10 +11,13 @@ import { Router,ActivatedRoute } from '@angular/router';
 })
 export class Tab1Page implements OnInit, OnDestroy {
 	// tslint:disable:indent
-	msg = 'df';
-	msgs = [];
- 	connection;
- 	id = 1;
+  slideOpts = {
+    initialSlide: 1,
+    autoplay: {
+      delay: 5000,
+    },
+  };
+
   constructor(public userService: UserService, private socket: Socket,
               private router: Router, private route: ActivatedRoute) {
 
@@ -22,20 +25,12 @@ export class Tab1Page implements OnInit, OnDestroy {
   }
 
 
-  send() {
-    const data = {text: this.msg, type: 'new'};
-    this.userService.sendMessage(data);
-    this.msg = '';
-  }
+
 
   ngOnInit() {
-    this.connection = this.userService.getMessages().subscribe(message => {
-        this.msgs.push(message);
-    });
   }
 
   ngOnDestroy() {
-   this.connection.unsubscribe();
  }
 }
 

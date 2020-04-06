@@ -13,7 +13,7 @@
   <ion-searchbar></ion-searchbar>
   <ion-item *ngFor="let rst of rstList" (click)="goToPage(rst.id)">
       <ion-thumbnail slot="start">
-        <img src="{{rstService.hostName}}{{rst.imagePath}}">
+        <img src="{{rstService.hostName}}{{rst.imagePath ? rst.imagePath : '/logo'}}">
       </ion-thumbnail>
       <ion-label>
         <h2>{{rst.name}}</h2>

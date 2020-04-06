@@ -1,7 +1,7 @@
 <ion-list *ngIf="order && order.items">
   <ion-item *ngFor="let item of order.items">
     <ion-thumbnail slot="start">
-      <img src="{{orderService.hostName}}{{item.imagePath}}">
+      <img src="{{orderService.hostName}}{{item.imagePath ? item.imagePath : '/logo'}}">
     </ion-thumbnail>
     <ion-label>
       <h2 class="ion-text-wrap">{{item.name}}</h2>

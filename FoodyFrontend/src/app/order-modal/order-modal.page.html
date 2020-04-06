@@ -15,7 +15,7 @@
     </ion-item-options>
     <ion-item>
       <ion-thumbnail slot="start">
-        <img src="{{hostName}}{{item.imagePath}}">
+        <img src="{{hostName}}{{item.imagePath ? item.imagePath : '/logo'}}">
       </ion-thumbnail>
       <ion-label>
         <h2 class="ion-text-wrap">{{item.name}}</h2>
