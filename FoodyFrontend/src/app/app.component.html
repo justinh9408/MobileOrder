@@ -1,19 +1,42 @@
 <ion-app>
-  <ion-menu side="start" menuId="menu" contentId="content">
+  <ion-menu side="start" menuId="userMenu" contentId="content">
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title>Start Menu</ion-title>
+        <ion-title>Menu</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item><a href="/log-in/0">User Log In</a></ion-item>
-        <ion-item><a href="/register/0">User Register</a></ion-item>
-        <ion-item><a href="/log-in/1">Restaurant Log In</a></ion-item>     
-        <ion-item><a href="/register/1">Restaurant Register</a></ion-item>
-        <ion-item><a href="/tabs">Tabs</a></ion-item>
-        <ion-item (click)="logout()">Log out</ion-item>
-        <ion-item>Menu Item</ion-item>
+        <ion-item>
+          <ion-icon name="people" color="primary"></ion-icon> {{userName}}
+        </ion-item>
+        <ion-menu-toggle>
+          <ion-button expand="full" color="light">User Profile</ion-button>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-button expand="full" (click)="userService.logout()">Log out</ion-button>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-menu side="end" menuId="rstMenu" contentId="content">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="restaurant" color="primary"></ion-icon> {{rstName}}
+        </ion-item>
+        <ion-menu-toggle>
+          <ion-button expand="full" color="light">User Profile</ion-button>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-button expand="full" (click)="restaurantService.logout()">Log out</ion-button>
+        </ion-menu-toggle>
       </ion-list>
     </ion-content>
   </ion-menu>

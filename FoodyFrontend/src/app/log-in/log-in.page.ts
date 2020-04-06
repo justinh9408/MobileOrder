@@ -31,6 +31,7 @@ export class LogInPage implements OnInit {
       password: this.password
     };
     if (this.isRst === '0') {
+      // user
       this.userService.login(item).subscribe(result => {
         console.log(result);
         if (result.length > 0) {
@@ -41,6 +42,7 @@ export class LogInPage implements OnInit {
         }
       });
     } else if (this.isRst === '1') {
+      // rst
       this.rstService.login(item).subscribe(result => {
         console.log(result);
         if (result.length > 0) {

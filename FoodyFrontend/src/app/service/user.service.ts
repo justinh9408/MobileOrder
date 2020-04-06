@@ -73,6 +73,8 @@ export class UserService {
   logout() {
     this.storage.remove('userName');
     this.storage.remove('userId');
+    this.storage.remove('order');
+    window.location.href = '/log-in/0';
   }
 
   checkLoginStatus() {

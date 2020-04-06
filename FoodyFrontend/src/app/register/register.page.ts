@@ -40,11 +40,13 @@ export class RegisterPage implements OnInit {
       password: this.password
     };
     if (this.isRst === '0') {
-    this.userService.register(item).subscribe(result => {
-      console.log('success!', result);
-      window.location.href = '/';
-    });
+      // user
+      this.userService.register(item).subscribe(result => {
+        console.log('success!', result);
+        window.location.href = '/';
+      });
     } else if (this.isRst === '1') {
+      // rst
       this.rstService.register(item).subscribe(result => {
         console.log('success!', result);
         window.location.href = '/admins/home';
