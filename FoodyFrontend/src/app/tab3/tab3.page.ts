@@ -21,14 +21,14 @@ export class Tab3Page {
         this.orders.forEach(ord => {
           ord.items = [];
         });
-        this.orderInShow = this.orders[0];
         orderService.getOrderItemsByUser(userId).subscribe(items => {
-          items.forEach(item => {
+          for (const item of items) {
             const or = this.orders.find(ord => item.orderID === ord.id);
             if (or) {
               or.items.push(item);
             }
-          });
+          }
+          this.orderInShow = this.orders[0];
         });
       });
     });

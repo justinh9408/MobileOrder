@@ -12,6 +12,12 @@
     </ion-label>
   </ion-item>
   <ion-item>
-    Total: ${{order.totalPrice}}
+    Subtotal: <span slot="end">${{subtotal | number:'1.2-2'}}</span>
+  </ion-item>
+  <ion-item>
+    GST: <span slot="end">${{gst | number:'1.2-2'}}</span>
+  </ion-item>
+  <ion-item>
+    Total: <span slot="end">${{totalPrice | number:'1.2-2'}}</span>
   </ion-item>
 </ion-list>

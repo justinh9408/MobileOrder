@@ -29,14 +29,14 @@ export class OrderPage implements OnInit, OnDestroy {
                     this.orders.forEach(ord => {
                       ord.items = [];
                     });
-                    this.orderInShow = this.orders[0];
                     orderService.getOrderItemsByRst(rstId).subscribe(items => {
-                      items.forEach(item => {
+                      for (const item of items) {
                         const or = this.orders.find(ord => item.orderID === ord.id);
                         if (or) {
                           or.items.push(item);
                         }
-                      });
+                      }
+                      this.orderInShow = this.orders[0];
                     });
                   });
                 });
