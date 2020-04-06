@@ -1,4 +1,24 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
+ion-item img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+  height: auto;
 }
+
+ion-slides{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    --bullet-background-active: white;
+    --scroll-bar-background-active: white;
+}
+
+span, img {
+    width: 100%;
+    height: 30%;
+    display: inline-block;
+    background-size: cover;
+    position: center center;
+}
+
+
