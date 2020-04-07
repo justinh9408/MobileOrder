@@ -10,14 +10,16 @@
 
 <ion-content>
   <ion-item>
+    <ion-label position="stacked">Name</ion-label>
     <ion-input name="name" type="text" placeholder="Name" [(ngModel)]="restaurant.name" required></ion-input>
   </ion-item>
   <ion-item>
+    <ion-label position="stacked">Description</ion-label>
     <ion-input name="description" type="text" placeholder="Description" [(ngModel)]="restaurant.description" required></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Current Image</ion-label>
-    <img [src]="restaurantService.hostName + restaurant.imagePath">
+    <img src="{{restaurantService.hostName}}{{restaurant.imagePath ? restaurant.imagePath : '/logo'}}">
   </ion-item>
   <ion-item>
     <input type="file" name="rstImage"  (change)="upload($event)" />

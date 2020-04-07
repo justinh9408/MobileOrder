@@ -4,6 +4,7 @@ import { OrderService } from '../../service/order.service';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { Socket } from 'ng-socket-io';
 import { Storage } from '@ionic/storage';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-order',
@@ -18,10 +19,12 @@ export class OrderPage implements OnInit, OnDestroy {
   today = new Date();
 
   constructor(public userService: UserService,public orderService: OrderService,public storage: Storage,
-              private socket: Socket, private activatedRoute: ActivatedRoute) { 
+              private socket: Socket, private activatedRoute: ActivatedRoute, public toastController: ToastController) { 
                 this.storage.get('rstId').then((rstId) => {
                   this.connection = this.orderService.receiveOrder(rstId).subscribe(order => {
-                    this.orders.push(order);
+                    order['class'] = 'new-order';
+                    this.orders.unshift(order);
+                    this.orderInShow = order;
                   });
 
                   orderService.getOrdersByRst(rstId).subscribe(result => {
@@ -54,16 +57,25 @@ export class OrderPage implements OnInit, OnDestroy {
 
 // select one specific order
   orderClick(order){
+    order.class = '';
     this.orderInShow = order;
   }
 
-  getTimeStamp(timeStr) {
-    const orderDate = new Date(timeStr);
-    if (orderDate.toLocaleDateString() === this.today.toLocaleDateString()) {
-      return orderDate.toLocaleTimeString();
-    } else {
-      return orderDate.toLocaleDateString();
-    }
+  updateOrderStatus() {
+    this.orderService.updateOrderStatus(this.orderInShow.id, 2).subscribe(result => {
+      if (result) {
+        this.orderInShow.status = 'done';
+        this.presentToast('Order Status Updated!');
+      }
+    });
+  }
+
+  async presentToast(mes) {
+    const toast = await this.toastController.create({
+      message: mes,
+      duration: 2000
+    });
+    toast.present();
   }
 
 

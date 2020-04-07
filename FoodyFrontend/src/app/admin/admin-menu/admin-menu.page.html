@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content fullscreen>
+  <ion-item>
+    <ion-label *ngIf="!categories">There is no category now. </ion-label>
+  </ion-item>
   <ion-card *ngFor="let category of categories">
     <ion-card-header>
       <ion-item *ngIf="category.editMode == false">
@@ -38,7 +41,7 @@
         </ion-item-options>
         <ion-item (click)="menuItemAddEdit(item.catID, item.id)">
           <ion-thumbnail slot="start">
-            <img src="{{menuService.hostName}}{{item.imagePath}}">
+            <img src="{{menuService.hostName}}{{item.imagePath ? item.imagePath : '/logo'}}">
           </ion-thumbnail>
           <ion-label>
             <h2 class="ion-text-wrap">{{item.name}}</h2>

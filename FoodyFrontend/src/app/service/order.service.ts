@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import * as io from 'socket.io-client';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { OrderModalPage } from '../order-modal/order-modal.page';
 
 @Injectable({
@@ -21,7 +21,8 @@ export class OrderService {
 
   options: any;
 
-  constructor(public http: HttpClient, public storage: Storage, public modalController: ModalController) {
+  constructor(public http: HttpClient, public storage: Storage,
+              public modalController: ModalController, public toastController: ToastController) {
     this.headers.set('Access-Control-Allow-Headers', 'Content-Type');
     this.options = { headers: this.headers,  withCredentials: true};
   }
@@ -62,13 +63,19 @@ export class OrderService {
         console.log(data);
         if (data.data.submit) {
           // submit
-          this.createOrder(order).subscribe(result => {
+          this.createOrder(order).subscribe(async result => {
             console.log(result);
             if (result && result.length > 0) {
               order.id = result[0].id;
+              order.status = 'sent';
               order.created = new Date().toLocaleString();
               this.submitOrder(order);
               this.storage.remove('order');
+              const toast = await this.toastController.create({
+                message: 'Order is submitted!',
+                duration: 2000
+              });
+              toast.present();
             }
           });
 
@@ -96,5 +103,9 @@ export class OrderService {
 
   createOrder(item): Observable<any> {
     return this.http.post(this.hostName + '/orders', item);
+  }
+
+  updateOrderStatus(orderId, statusId): Observable<any> {
+    return this.http.get(this.hostName + '/updateOrderStatus/' + orderId + '/' + statusId);
   }
 }

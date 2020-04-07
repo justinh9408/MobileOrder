@@ -78,7 +78,7 @@ io.on('connection', (socket) => {
         let orderEvent = 'receiveOrder-' + data.rstId;
         console.log("Order submitted! Event name: " + orderEvent);
         // emit to the specific rst owner with the coresponding rstId
-        io.emit(orderEvent, {type:'newOrder', items: data.items});  
+        io.emit(orderEvent, data);  
     });
 });
 

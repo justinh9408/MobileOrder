@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../../service/restaurant.service';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-admin-home',
@@ -20,7 +21,8 @@ export class AdminHomePage implements OnInit {
 
 	image: any;
 
-	constructor(public restaurantService: RestaurantService, public storage: Storage) {
+	constructor(public toastController: ToastController,
+				public restaurantService: RestaurantService, public storage: Storage) {
 		storage.get('rstId').then(result => {
 			// tslint:disable-next-line:radix
 			restaurantService.getRestaurant(parseInt(result)).subscribe(rst => {
@@ -51,6 +53,14 @@ export class AdminHomePage implements OnInit {
 	save() {
 		this.restaurantService.updateRestaurant(this.restaurant.id, this.restaurant).subscribe(result => {
 			this.uploadFile('rstImage', result[0].id);
+			this.presentToast('Restaurant Info Saved!');
 		});
 	}
+	async presentToast(mes) {
+		const toast = await this.toastController.create({
+		  message: mes,
+		  duration: 2000
+		});
+		toast.present();
+	  }
 }

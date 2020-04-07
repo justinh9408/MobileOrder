@@ -28,7 +28,11 @@
       <ion-icon name="add-circle" (click)="increment(item)" color="primary"></ion-icon>
     </ion-item>
   </ion-item-sliding>
-  <ion-buttons *ngIf="order && order.items.length > 0">
-    <ion-button size="large" (click)="submit()">Submit Order</ion-button>
-  </ion-buttons>
+  <ion-item *ngIf="order && order.items.length != 0">
+    <ion-label position="stacked">Note</ion-label>
+    <ion-textarea [(ngModel)]="note" (change)="noteUpdate()"></ion-textarea>
+  </ion-item>
+  <ion-item *ngIf="order && order.items.length > 0">
+    <ion-button size="large" expand="block" (click)="submit()">Submit Order</ion-button>
+  </ion-item>
 </ion-content>

@@ -1,4 +1,19 @@
 <ion-list *ngIf="order && order.items">
+  <ion-item>
+    Order # <span slot="end">{{order.id}}</span>
+  </ion-item>
+  <ion-item *ngIf="order && order.rstName">
+    <ion-icon name="restaurant"></ion-icon> <span slot="end">{{order.rstName}}</span>
+  </ion-item>
+  <ion-item *ngIf="order && order.userName">
+    <ion-icon name="people"></ion-icon> <span slot="end">{{order.userName}}</span>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="timer"></ion-icon> <span slot="end">{{dateStringWrap(order.created)}}</span>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="aperture"></ion-icon> <span slot="end" class="ion-text-uppercase">{{order.status}}</span>
+  </ion-item>
   <ion-item *ngFor="let item of order.items">
     <ion-thumbnail slot="start">
       <img src="{{orderService.hostName}}{{item.imagePath ? item.imagePath : '/logo'}}">
@@ -10,6 +25,10 @@
       </ion-chip>
       x {{item.amount}}
     </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Note</ion-label>
+    <p>{{order.note}}</p>
   </ion-item>
   <ion-item>
     Subtotal: <span slot="end">${{subtotal | number:'1.2-2'}}</span>

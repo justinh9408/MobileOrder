@@ -40,4 +40,8 @@ export class OrderItemComponent implements OnInit, OnChanges {
       this.totalPrice = this.subtotal + this.gst;
     }
   }
+
+  dateStringWrap(date) {
+    return new Date(date).toLocaleString();
+  }
 }

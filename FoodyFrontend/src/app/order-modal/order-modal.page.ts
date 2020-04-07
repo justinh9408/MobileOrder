@@ -12,12 +12,16 @@ export class OrderModalPage implements OnInit {
 
   @Input() hostName: any;
   order: any;
+  note: string;
 
   constructor(public modalCtrl: ModalController, public storage: Storage,
               public alertController: AlertController, public toastController: ToastController) {
     storage.get('order').then(result => {
       this.order = result;
       console.log(this.order);
+      if (this.order && this.order.note) {
+        this.note = this.order.note;
+      }
     });
   }
 
@@ -89,6 +93,12 @@ export class OrderModalPage implements OnInit {
 
   decrement(item) {
     item.amount --;
+    this.orderUpdate();
+  }
+
+  noteUpdate() {
+    console.log('noteupdate');
+    this.order.note = this.note;
     this.orderUpdate();
   }
 

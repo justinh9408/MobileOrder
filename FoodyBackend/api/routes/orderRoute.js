@@ -18,4 +18,7 @@ module.exports = function(app) {
 
   app.route('/orderItemsByUser/:userId')
     .get(oCtrl.list_all_order_items_by_user);
+
+  app.route('/updateOrderStatus/:orderId/:statusId')
+    .get(oCtrl.update_order_status);
 };

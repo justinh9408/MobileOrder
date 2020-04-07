@@ -25,13 +25,13 @@
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Current Image</ion-label>
-    <img [src]="menuService.hostName + item.imagePath">
+    <img src="{{menuService.hostName}}{{item.imagePath ? item.imagePath : '/logo'}}">
   </ion-item>
   <ion-item>
     <input type="file" name="menuItemImage"  (change)="upload($event)" />
   </ion-item>
-  <ion-buttons>
+  <ion-item>
       <ion-button size="large" (click)="save()">Save</ion-button>
-      <ion-button size="large" (click)="cancel()">Cancel</ion-button>
-  </ion-buttons>
+      <ion-button size="large" color="light" (click)="cancel()">Cancel</ion-button>
+  </ion-item>
 </ion-content>
