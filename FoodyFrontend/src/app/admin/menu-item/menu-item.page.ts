@@ -60,6 +60,9 @@ export class MenuItemPage implements OnInit {
   }
 
   save() {
+    if (!this.item.price) {
+      this.item.price = 0;
+    }
     if (this.itemId > 0) {
       // edit
       this.menuService.updateMenuItem(this.itemId, this.item).subscribe(result => {
