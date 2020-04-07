@@ -55,8 +55,9 @@ export class RestaurantService {
 
   logout() {
     this.storage.remove('rstName');
-    this.storage.remove('rstId');
-    window.location.href = '/log-in/1';
+    this.storage.remove('rstId').then(result => {
+      window.location.href = '/log-in/1';
+    });
   }
 
   checkLoginStatus() {
