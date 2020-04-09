@@ -1,6 +1,6 @@
 /node_modules
 /uploads/*
-!/uploads/logo
+!/uploads/logo.png
 /db/DBConfig.js
 /.DS_Store
 ../.DS_Store
