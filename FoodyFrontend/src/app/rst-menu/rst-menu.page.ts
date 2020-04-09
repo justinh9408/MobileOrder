@@ -35,8 +35,13 @@ export class RstMenuPage implements OnInit {
       });
       menuService.getCategories(this.rstId).subscribe(cats => {
         this.categories = cats;
-        this.categories.forEach(cat => {
+        this.categories.forEach((cat,index) => {
           cat.items = [];
+          if(index == 0){
+            cat.selectedColor = "primary";  
+          }else{
+            cat.selectedColor = "tertiary";
+          }
         });
         this.categoryInShow = this.categories[0];
         menuService.getCategoriesWithItem(this.rstId).subscribe(items => {
@@ -55,7 +60,11 @@ export class RstMenuPage implements OnInit {
   }
 
   categoryClick(category) {
+    this.categories.forEach(cat => {
+      cat.selectedColor = "tertiary";
+    })
     this.categoryInShow = category;
+    category.selectedColor = "primary";
   }
 
 }

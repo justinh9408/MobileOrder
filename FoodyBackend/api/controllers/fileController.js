@@ -55,7 +55,7 @@ exports.get_rst_image = function(req, res) {
 
 exports.get_logo = function(req, res) {
     res.setHeader('Content-Type', 'image/jpeg');
-    fs.createReadStream(path.join(UPLOAD_PATH, 'logo')).pipe(res)
+    fs.createReadStream(path.join(UPLOAD_PATH, 'logo.png')).pipe(res)
     .on('error', function (error) {
         res.status(404)
             .send('Not found');});
