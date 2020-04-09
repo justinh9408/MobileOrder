@@ -35,28 +35,33 @@ export class MenuItemPage implements OnInit {
       this.itemId = parseInt(params.get('itemId'));
       if (this.itemId < 0) {
         this.title = 'Add Menu Item';
+        this.getCategories();
       } else {
         this.title = 'Edit Menu Item';
         menuService.getMenuItem(this.itemId).subscribe(result => {
-          console.log('item', result);
-          this.item = result[0];
-          this.item.catID = this.catId;
+          console.log('result', result);
+          Object.assign(this.item, result[0]);
+          this.item.catID = -1;
+          this.getCategories();
         });
       }
-      storage.get('rstId').then(rst => {
-        // tslint:disable-next-line:radix
-        this.rstId = parseInt(rst);
-        menuService.getCategories(this.rstId).subscribe(result => {
-          console.log('categories', result);
-          this.categories = result;
-          this.item.catID = -1;
-          this.item.catID = this.catId;
-        });
-      });
     });
    }
 
   ngOnInit() {
+  }
+
+  getCategories() {
+    this.storage.get('rstId').then(rst => {
+      // tslint:disable-next-line:radix
+      this.rstId = parseInt(rst);
+      this.menuService.getCategories(this.rstId).subscribe(result => {
+        console.log('categories', result);
+        this.categories = result;
+        this.item.catID = this.catId;
+      });
+    });
+
   }
 
   save() {

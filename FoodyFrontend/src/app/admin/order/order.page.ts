@@ -23,14 +23,23 @@ export class OrderPage implements OnInit, OnDestroy {
                 this.storage.get('rstId').then((rstId) => {
                   this.connection = this.orderService.receiveOrder(rstId).subscribe(order => {
                     order['class'] = 'new-order';
+                    this.orders.forEach(ord => {
+                      ord.selectedColor = 'tertiary';
+                    });
+                    order['selectedColor'] = 'secondary';
                     this.orders.unshift(order);
                     this.orderInShow = order;
                   });
 
                   orderService.getOrdersByRst(rstId).subscribe(result => {
                     this.orders = result;
-                    this.orders.forEach(ord => {
+                    this.orders.forEach((ord, index) => {
                       ord.items = [];
+                      if (index === 0) {
+                        ord.selectedColor = 'secondary';
+                      } else {
+                        ord.selectedColor = 'tertiary';
+                      }
                     });
                     orderService.getOrderItemsByRst(rstId).subscribe(items => {
                       for (const item of items) {
@@ -58,6 +67,10 @@ export class OrderPage implements OnInit, OnDestroy {
 // select one specific order
   orderClick(order){
     order.class = '';
+    this.orders.forEach(ord => {
+      ord.selectedColor = 'tertiary';
+    });
+    order.selectedColor = 'secondary';
     this.orderInShow = order;
   }
 

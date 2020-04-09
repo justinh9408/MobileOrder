@@ -63,19 +63,27 @@ export class OrderService {
         console.log(data);
         if (data.data.submit) {
           // submit
-          this.createOrder(order).subscribe(async result => {
+          this.createOrder(order).subscribe(result => {
             console.log(result);
             if (result && result.length > 0) {
               order.id = result[0].id;
+              order.userName = result[0].userName;
               order.status = 'sent';
               order.created = new Date().toLocaleString();
               this.submitOrder(order);
-              this.storage.remove('order');
-              const toast = await this.toastController.create({
-                message: 'Order is submitted!',
-                duration: 2000
+              if (ref) {
+                ref.order = {
+                  userId: order.userId,
+                  items: []
+                };
+              }
+              this.storage.remove('order').then(async result => {
+                const toast = await this.toastController.create({
+                  message: 'Order is submitted!',
+                  duration: 2000
+                });
+                toast.present();
               });
-              toast.present();
             }
           });
 

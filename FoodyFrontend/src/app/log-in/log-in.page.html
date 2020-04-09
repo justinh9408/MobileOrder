@@ -9,7 +9,7 @@
 <ion-content>
  <ion-grid>
     <ion-row class="ion-justify-content-center">
-      <ion-col lign-self-center size-md="6" size-lg="5" size-xs="12">
+      <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
           <ion-item>
             <ion-input name="name" type="text" placeholder="Name" [(ngModel)]="name" required></ion-input>
           </ion-item>
@@ -19,8 +19,8 @@
           <p *ngIf="!valid" style="color: red">Invalid user name or password!</p>
           <ion-button size="large" expand="block" (click)="login()">Log In</ion-button>
           <ion-item href="/register/{{isRst}}">Register</ion-item>
-          <ion-item *ngIf="isRst === '0'"  href="/register/1">Restaurant Log In</ion-item>
-          <ion-item *ngIf="isRst === '1'"  href="/register/0">User Log In</ion-item>
+          <ion-item *ngIf="isRst === '0'"  href="/log-in/1">Restaurant Log In</ion-item>
+          <ion-item *ngIf="isRst === '1'"  href="/log-in/0">User Log In</ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>

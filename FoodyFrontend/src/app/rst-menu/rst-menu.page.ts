@@ -37,10 +37,10 @@ export class RstMenuPage implements OnInit {
         this.categories = cats;
         this.categories.forEach((cat,index) => {
           cat.items = [];
-          if(index == 0){
-            cat.selectedColor = "primary";  
-          }else{
-            cat.selectedColor = "tertiary";
+          if (index === 0) {
+            cat.selectedColor = 'secondary';
+          } else {
+            cat.selectedColor = 'tertiary';
           }
         });
         this.categoryInShow = this.categories[0];
@@ -61,10 +61,10 @@ export class RstMenuPage implements OnInit {
 
   categoryClick(category) {
     this.categories.forEach(cat => {
-      cat.selectedColor = "tertiary";
-    })
+      cat.selectedColor = 'tertiary';
+    });
+    category.selectedColor = 'secondary';
     this.categoryInShow = category;
-    category.selectedColor = "primary";
   }
 
 }

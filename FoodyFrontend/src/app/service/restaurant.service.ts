@@ -54,9 +54,10 @@ export class RestaurantService {
   }
 
   logout() {
-    this.storage.remove('rstName');
-    this.storage.remove('rstId').then(result => {
-      window.location.href = '/log-in/1';
+    this.storage.remove('rstName').then(result1 => {
+      this.storage.remove('rstId').then(result2 => {
+        window.location.href = '/log-in/1';
+      });
     });
   }
 

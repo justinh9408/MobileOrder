@@ -71,10 +71,11 @@ export class UserService {
   }
 
   logout() {
-    this.storage.remove('userName');
-    this.storage.remove('userId').then(result => {
-      this.storage.remove('order').then(result2 => {
-        window.location.href = '/log-in/0';
+    this.storage.remove('userName').then(result1 => {
+      this.storage.remove('userId').then(result2 => {
+        this.storage.remove('order').then(result3 => {
+          window.location.href = '/log-in/0';
+        });
       });
     });
 

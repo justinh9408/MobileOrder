@@ -12,7 +12,7 @@
     <ion-col size="3" id="order">
       <ion-content color="tertiary">
         <ion-list>
-          <ion-item *ngFor="let order of orders" (click)="orderClick(order)" color="secondary"
+          <ion-item *ngFor="let order of orders" (click)="orderClick(order)" color="{{order.selectedColor}}"
           [ngClass]="{'new-order': order.class === 'new-order'}">
             <ion-label>
               <h2 class="ion-text-wrap"># {{order.id}}</h2>

@@ -13,12 +13,29 @@ ion-slides{
     --scroll-bar-background-active: white;
 }
 
-span, img {
+ion-thumbnail {
+  margin: 10px;
+  img {
+    border-radius: 5%;
+  }
+  
+}
+
+#title {
+  font-style: italic;
+  font-weight: bold;
+  font-size: large;
+}
+
+span{
     width: 100%;
     height: 30%;
     display: inline-block;
     background-size: cover;
     position: center center;
+    img {
+      width: 100%;
+    }
 }
 
 

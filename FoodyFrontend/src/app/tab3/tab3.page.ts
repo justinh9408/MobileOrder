@@ -18,8 +18,13 @@ export class Tab3Page {
     this.storage.get('userId').then(userId => {
       orderService.getOrdersByUser(userId).subscribe(result => {
         this.orders = result;
-        this.orders.forEach(ord => {
+        this.orders.forEach((ord, index) => {
           ord.items = [];
+          if (index === 0) {
+            ord.selectedColor = 'secondary';
+          } else {
+            ord.selectedColor = 'tertiary';
+          }
         });
         orderService.getOrderItemsByUser(userId).subscribe(items => {
           for (const item of items) {
@@ -35,6 +40,10 @@ export class Tab3Page {
   }
 
   orderClick(order) {
+    this.orders.forEach(ord => {
+      ord.selectedColor = 'tertiary';
+    });
+    order.selectedColor = 'secondary';
     this.orderInShow = order;
   }
 

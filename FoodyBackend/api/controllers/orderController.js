@@ -20,7 +20,7 @@ exports.create_a_order = function(req, res) {
                 if (err2) {
                     res.json(err2);
                 } else {
-                    req.sql.query("select * from orders where id = ?",
+                    req.sql.query("select o.*, u.name as userName from orders o left join users u on o.userID = u.id where o.id = ?",
                     [data.insertId],
                     (err3, data3) => {
                         responseFunction(res, err3, data3);
