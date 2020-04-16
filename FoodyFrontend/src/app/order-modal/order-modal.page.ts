@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, AlertController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { OrderService } from '../service/order.service';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class OrderModalPage implements OnInit {
   order: any;
   note: string;
 
-  constructor(public modalCtrl: ModalController, public storage: Storage, public orderServe : OrderService,
+  constructor(public modalCtrl: ModalController, public storage: Storage,
               public alertController: AlertController, public toastController: ToastController) {
     storage.get('order').then(result => {
       this.order = result;

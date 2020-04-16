@@ -15,8 +15,11 @@ export class Tab3Page {
   today = new Date();
 
   constructor(public orderService: OrderService, public storage: Storage) {
+  }
+
+  ionViewWillEnter() {
     this.storage.get('userId').then(userId => {
-      orderService.getOrdersByUser(userId).subscribe(result => {
+      this.orderService.getOrdersByUser(userId).subscribe(result => {
         this.orders = result;
         this.orders.forEach((ord, index) => {
           ord.items = [];
@@ -26,7 +29,7 @@ export class Tab3Page {
             ord.selectedColor = 'tertiary';
           }
         });
-        orderService.getOrderItemsByUser(userId).subscribe(items => {
+        this.orderService.getOrderItemsByUser(userId).subscribe(items => {
           for (const item of items) {
             const or = this.orders.find(ord => item.orderID === ord.id);
             if (or) {
@@ -36,7 +39,7 @@ export class Tab3Page {
           this.orderInShow = this.orders[0];
         });
 
-        orderService.orderStatusUpdate(userId).subscribe(data => {
+        this.orderService.orderStatusUpdate(userId).subscribe(data => {
           console.log("orderStatusUpdate: " + data["status"] + data["orderId"])
           for(const ord of result){
             if (ord.id == data["orderId"]) {
@@ -45,8 +48,8 @@ export class Tab3Page {
           }
         });
       });
-
     });
+
   }
 
   orderClick(order) {

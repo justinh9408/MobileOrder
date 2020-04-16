@@ -81,7 +81,7 @@ export class OrderPage implements OnInit, OnDestroy {
       if (result) {
         this.orderInShow.status = 'done';
         this.presentToast('Order Status Updated!');
-        const data = {orderId : this.orderInShow.id, userId:this.orderInShow.userId, status:"Done!"};
+        const data = {orderId : this.orderInShow.id, userId:this.orderInShow.userId, status:"done"};
         console.log("updata orer: " + data);
         this.orderService.finishOrder(data);
       
