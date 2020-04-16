@@ -35,7 +35,17 @@ export class Tab3Page {
           }
           this.orderInShow = this.orders[0];
         });
+
+        orderService.orderStatusUpdate(userId).subscribe(data => {
+          console.log("orderStatusUpdate: " + data["status"] + data["orderId"])
+          for(const ord of result){
+            if (ord.id == data["orderId"]) {
+              ord.status = data["status"];
+            }
+          }
+        });
       });
+
     });
   }
 

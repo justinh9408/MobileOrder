@@ -79,7 +79,15 @@ io.on('connection', (socket) => {
         console.log("Order submitted! Event name: " + orderEvent);
         // emit to the specific rst owner with the coresponding rstId
         io.emit(orderEvent, data);  
+        socket.emit("addOrder",data);
     });
+
+    socket.on('changeOrderStatus', (data) => {
+        let event = 'orderStatusUpdate-' + data.userId;
+        console.log("Order status update! Event name: " + event);
+        io.emit(event, data);  
+    });
+
 });
 
 

@@ -19,7 +19,8 @@ export class OrderPage implements OnInit, OnDestroy {
   today = new Date();
 
   constructor(public userService: UserService,public orderService: OrderService,public storage: Storage,
-              private socket: Socket, private activatedRoute: ActivatedRoute, public toastController: ToastController) { 
+              private socket: Socket, private activatedRoute: ActivatedRoute, 
+              public toastController: ToastController) { 
                 this.storage.get('rstId').then((rstId) => {
                   this.connection = this.orderService.receiveOrder(rstId).subscribe(order => {
                     order['class'] = 'new-order';
@@ -72,6 +73,7 @@ export class OrderPage implements OnInit, OnDestroy {
     });
     order.selectedColor = 'secondary';
     this.orderInShow = order;
+    console.log(order);
   }
 
   updateOrderStatus() {
@@ -79,6 +81,10 @@ export class OrderPage implements OnInit, OnDestroy {
       if (result) {
         this.orderInShow.status = 'done';
         this.presentToast('Order Status Updated!');
+        const data = {orderId : this.orderInShow.id, userId:this.orderInShow.userId, status:"Done!"};
+        console.log("updata orer: " + data);
+        this.orderService.finishOrder(data);
+      
       }
     });
   }

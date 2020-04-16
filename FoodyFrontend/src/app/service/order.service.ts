@@ -27,13 +27,33 @@ export class OrderService {
     this.options = { headers: this.headers,  withCredentials: true};
   }
 
+  //rst finish order
+  finishOrder(data){
+    this.socket.emit('changeOrderStatus', data);
+  }
+
+  //update order status in customer side
+  orderStatusUpdate(userId){
+    let observable = new Observable(observer => {
+      this.socket = io(this.hostName);
+      let orderEvent = 'orderStatusUpdate-' + userId;
+      this.socket.on(orderEvent, (data) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }
+
   // customer submit order to rst
   submitOrder(data) {
-
+    
     this.socket.emit('submitOrder', data);
   }
 
-    // rst owner recieve real-time order
+  // rst owner recieve real-time order
   receiveOrder(rstId) {
     let observable = new Observable(observer => {
       this.socket = io(this.hostName);
@@ -102,6 +122,7 @@ export class OrderService {
   }
 
   getOrdersByUser(userId): Observable<any> {
+
     return this.http.get(this.hostName + '/ordersByUser/' + userId);
   }
 

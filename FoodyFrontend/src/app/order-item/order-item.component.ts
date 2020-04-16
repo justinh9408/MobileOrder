@@ -15,6 +15,7 @@ export class OrderItemComponent implements OnInit, OnChanges {
   totalPrice: number;
 
   constructor(public orderService: OrderService) {
+    
    }
 
   ngOnInit() {
