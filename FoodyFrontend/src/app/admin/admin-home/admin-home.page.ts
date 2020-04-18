@@ -46,7 +46,10 @@ export class AdminHomePage implements OnInit {
 			formData.append(name, this.image);
 			this.restaurantService.uploadFile(formData, id).subscribe(result => {
 				console.log(result);
+				window.location.href = '/admins/home/';
 			});
+		} else {
+			window.location.href = '/admins/home/';
 		}
 	}
 

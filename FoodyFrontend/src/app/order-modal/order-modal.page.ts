@@ -13,12 +13,16 @@ export class OrderModalPage implements OnInit {
   @Input() hostName: any;
   order: any;
   note: string;
+  subtotal: number;
+  gst: number;
+  totalPrice: number;
 
   constructor(public modalCtrl: ModalController, public storage: Storage,
               public alertController: AlertController, public toastController: ToastController) {
     storage.get('order').then(result => {
       this.order = result;
       console.log(this.order);
+      this.calculateTotalPrice();
       if (this.order && this.order.note) {
         this.note = this.order.note;
       }
@@ -31,6 +35,7 @@ export class OrderModalPage implements OnInit {
   orderUpdate() {
     console.log('update');
     this.storage.set('order', this.order);
+    this.calculateTotalPrice();
   }
 
   submit() {
@@ -102,6 +107,22 @@ export class OrderModalPage implements OnInit {
     console.log('noteupdate');
     this.order.note = this.note;
     this.orderUpdate();
+  }
+
+  calculateTotalPrice() {
+    console.log('calculateTotalPrice', this.order);
+    this.subtotal = 0;
+    this.gst = 0;
+    this.totalPrice = 0;
+    if (this.order) {
+      console.log('calculateTotalPrice', this.order.items);
+      for (const item of this.order.items) {
+        console.log('calculateTotalPrice', item);
+        this.subtotal += item.amount * item.price;
+      }
+      this.gst = this.subtotal * 0.05;
+      this.totalPrice = this.subtotal + this.gst;
+    }
   }
 
 }

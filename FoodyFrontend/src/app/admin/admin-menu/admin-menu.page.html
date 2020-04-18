@@ -9,7 +9,7 @@
 
 <ion-content fullscreen>
   <ion-item>
-    <ion-label *ngIf="!categories">There is no category now. </ion-label>
+    <ion-label *ngIf="!categories || categories.length == 0">There is no category now. </ion-label>
   </ion-item>
   <ion-card *ngFor="let category of categories">
     <ion-card-header>
