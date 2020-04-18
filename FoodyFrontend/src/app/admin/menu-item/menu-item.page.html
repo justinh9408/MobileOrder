@@ -7,7 +7,7 @@
 <ion-content fullscreen>
   <ion-item>
     <ion-label position="stacked">Category</ion-label>
-    <ion-select placeholder="Select Category" [(ngModel)]="item.catID">
+    <ion-select placeholder="Select Category" [(ngModel)]="item.catID" required>
       <ion-select-option *ngFor="let cat of categories"
       [value]="cat.id">{{cat.name}}</ion-select-option>
     </ion-select>
@@ -18,7 +18,7 @@
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Description</ion-label>
-    <ion-input name="description" type="text" placeholder="Description" [(ngModel)]="item.description" required></ion-input>
+    <ion-input name="description" type="text" placeholder="Description" [(ngModel)]="item.description"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Price</ion-label>
@@ -32,7 +32,7 @@
     <input type="file" name="menuItemImage"  (change)="upload($event)" />
   </ion-item>
   <ion-item>
-      <ion-button size="large" (click)="save()">Save</ion-button>
+      <ion-button size="large" type="submit" (click)="save()">Save</ion-button>
       <ion-button size="large" color="light" (click)="cancel()">Cancel</ion-button>
   </ion-item>
 </ion-content>

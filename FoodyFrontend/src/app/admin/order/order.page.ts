@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Output } from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { OrderService } from '../../service/order.service';
-import {Router, ActivatedRoute, Params} from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Socket } from 'ng-socket-io';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
@@ -19,8 +19,8 @@ export class OrderPage implements OnInit, OnDestroy {
   today = new Date();
 
   constructor(public userService: UserService,public orderService: OrderService,public storage: Storage,
-              private socket: Socket, private activatedRoute: ActivatedRoute, 
-              public toastController: ToastController) { 
+              private socket: Socket, private activatedRoute: ActivatedRoute,
+              public toastController: ToastController) {
                 this.storage.get('rstId').then((rstId) => {
                   this.connection = this.orderService.receiveOrder(rstId).subscribe(order => {
                     order['class'] = 'new-order';
@@ -81,10 +81,10 @@ export class OrderPage implements OnInit, OnDestroy {
       if (result) {
         this.orderInShow.status = 'done';
         this.presentToast('Order Status Updated!');
-        const data = {orderId : this.orderInShow.id, userId:this.orderInShow.userId, status:"done"};
-        console.log("updata orer: " + data);
+        const userId = this.orderInShow.userID ? this.orderInShow.userID : this.orderInShow.userId;
+        const data = {orderId: this.orderInShow.id, userId, status: 'done'};
+        console.log('update order: ', data);
         this.orderService.finishOrder(data);
-      
       }
     });
   }

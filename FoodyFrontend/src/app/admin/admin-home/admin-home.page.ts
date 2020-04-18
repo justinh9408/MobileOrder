@@ -51,10 +51,14 @@ export class AdminHomePage implements OnInit {
 	}
 
 	save() {
-		this.restaurantService.updateRestaurant(this.restaurant.id, this.restaurant).subscribe(result => {
-			this.uploadFile('rstImage', result[0].id);
-			this.presentToast('Restaurant Info Saved!');
-		});
+		if (this.restaurant.name) {
+			this.restaurantService.updateRestaurant(this.restaurant.id, this.restaurant).subscribe(result => {
+				this.uploadFile('rstImage', result[0].id);
+				this.presentToast('Restaurant Info Saved!');
+			});
+		} else {
+			this.presentToast('Restaurant name is required!');
+		}
 	}
 	async presentToast(mes) {
 		const toast = await this.toastController.create({

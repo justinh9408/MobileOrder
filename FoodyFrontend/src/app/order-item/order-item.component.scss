@@ -1,0 +1,28 @@
+@-webkit-keyframes notifAnimation {
+    50% {
+        opacity: 0.5;
+        filter: alpha(opacity=50)
+    }
+    100% {
+        opacity: 1;
+        filter: alpha(opacity=100)
+    }
+}
+
+@keyframes notifAnimation {
+    50% {
+        opacity: 0.5;
+        filter: alpha(opacity=50)
+    }
+    100% {
+        opacity: 1;
+        filter: alpha(opacity=100)
+    }
+}
+
+.real-time-update {
+    -webkit-animation: notifAnimation 1s infinite;
+    animation: notifAnimation 1s infinite;
+    color: var(--ion-color-secondary);
+
+}

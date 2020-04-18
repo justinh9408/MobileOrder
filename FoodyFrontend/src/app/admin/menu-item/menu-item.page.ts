@@ -65,21 +65,22 @@ export class MenuItemPage implements OnInit {
   }
 
   save() {
-    if (!this.item.price) {
-      this.item.price = 0;
-    }
-    if (this.itemId > 0) {
-      // edit
-      this.menuService.updateMenuItem(this.itemId, this.item).subscribe(result => {
-        this.uploadFile('menuItemImage', result[0].id);
-        this.saveSuccessToast(result);
-      });
+    if (this.item.price && this.item.catID && this.item.name) {
+      if (this.itemId > 0) {
+        // edit
+        this.menuService.updateMenuItem(this.itemId, this.item).subscribe(result => {
+          this.uploadFile('menuItemImage', result[0].id);
+          this.saveSuccessToast(result);
+        });
+      } else {
+        // add
+        this.menuService.createMenuItem(this.item).subscribe(result => {
+          this.uploadFile('menuItemImage', result[0].id);
+          this.saveSuccessToast(result);
+        });
+      }
     } else {
-      // add
-      this.menuService.createMenuItem(this.item).subscribe(result => {
-        this.uploadFile('menuItemImage', result[0].id);
-        this.saveSuccessToast(result);
-      });
+      this.presentToast('Required fields need to be filled!', false);
     }
   }
 
@@ -94,13 +95,15 @@ export class MenuItemPage implements OnInit {
     }
   }
 
-  async presentToast(mes) {
+  async presentToast(mes, nav=true) {
     const toast = await this.toastController.create({
       message: mes,
       duration: 2000
     });
     toast.present().then(() => {
-      window.location.href = '/admins/menu/';
+      if (nav) {
+        window.location.href = '/admins/menu/';
+      }
     });
   }
 

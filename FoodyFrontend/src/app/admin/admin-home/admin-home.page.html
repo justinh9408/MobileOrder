@@ -15,7 +15,7 @@
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Description</ion-label>
-    <ion-input name="description" type="text" placeholder="Description" [(ngModel)]="restaurant.description" required></ion-input>
+    <ion-input name="description" type="text" placeholder="Description" [(ngModel)]="restaurant.description"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Current Image</ion-label>
@@ -24,5 +24,5 @@
   <ion-item>
     <input type="file" name="rstImage"  (change)="upload($event)" />
   </ion-item>
-  <ion-button size="large" color="primary" (click)="save()">Save</ion-button>
+  <ion-button size="large" color="primary" type="submit" (click)="save()">Save</ion-button>
 </ion-content>

@@ -11,7 +11,7 @@
   <ion-item>
     <ion-icon name="timer"></ion-icon> <span slot="end">{{dateStringWrap(order.created)}}</span>
   </ion-item>
-  <ion-item>
+  <ion-item [ngClass]="{'real-time-update': order.statusClass === 'real-time-update'}">
     <ion-icon name="aperture"></ion-icon> <span slot="end" class="ion-text-uppercase">{{order.status}}</span>
   </ion-item>
   <ion-item *ngFor="let item of order.items">

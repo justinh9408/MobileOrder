@@ -43,7 +43,7 @@ export class OrderService {
       return () => {
         this.socket.disconnect();
       };
-    })
+    });
     return observable;
   }
 

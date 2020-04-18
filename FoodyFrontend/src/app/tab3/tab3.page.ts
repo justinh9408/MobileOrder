@@ -39,11 +39,14 @@ export class Tab3Page {
           this.orderInShow = this.orders[0];
         });
 
+        console.log('order status update');
         this.orderService.orderStatusUpdate(userId).subscribe(data => {
-          console.log("orderStatusUpdate: " + data["status"] + data["orderId"])
+          console.log('orderStatusUpdate: ' + data['status'] + data['orderId']);
+          console.log(data['orderId']);
           for(const ord of result){
-            if (ord.id == data["orderId"]) {
-              ord.status = data["status"];
+            if (ord.id == data['orderId']) {
+              ord.status = data['status'];
+              ord.statusClass = 'real-time-update';
             }
           }
         });
