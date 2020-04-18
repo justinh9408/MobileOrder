@@ -42,8 +42,7 @@ export class Tab3Page {
         console.log('order status update');
         this.orderService.orderStatusUpdate(userId).subscribe(data => {
           console.log('orderStatusUpdate: ' + data['status'] + data['orderId']);
-          console.log(data['orderId']);
-          for(const ord of result){
+          for(const ord of result) {
             if (ord.id == data['orderId']) {
               ord.status = data['status'];
               ord.statusClass = 'real-time-update';
