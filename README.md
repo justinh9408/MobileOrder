@@ -8,8 +8,8 @@
 
 3. Make a new directory:
 
-    $ mkdir foody
-    $ cd foody
+    <$ mkdir foody
+    $ cd foody>
 
 4. Clone the repository:
 
